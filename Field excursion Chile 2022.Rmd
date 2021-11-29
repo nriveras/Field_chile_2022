@@ -1,0 +1,123 @@
+---
+title: "Field excursion Chile 2022"
+author: "Nicolas Riveras"
+date: "25/11/2021"
+output: 
+  ioslides_presentation:
+    widescreen: true
+    fullscreen: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+packages <- c("dplyr", "leaflet", "tidyverse", "data.table", "ggplot2", "tibble", "readr", "ranger", "knitr", "kableExtra")
+to_install <- setdiff(packages, rownames(installed.packages()))
+install.packages(to_install, character.only = TRUE,repos = "http://cran.us.r-project.org")
+invisible(lapply(packages, library, character.only = TRUE))
+```
+
+## Study sites
+
+```{r Reference_map, fig.cap= "Study sites", echo = FALSE, fig.width = 10.2}
+#map in leaflet
+locations <- data.frame(
+  Profile = c("Parque Nacional Pan de Azúcar", "Reserva Natural Santa Gracia", "Parque Nacional La Campana", "Parque Nacional Nahuelbuta", "Parque Nacional Alerce Costero", "Reserva Costera Valdiviana", "Parque Nacional Chiloé", "Quebrada de Talca"),
+  x = c(-26.143168, -29.745712,-32.966445, -37.798395, -40.194232, -40.125898, -42.422907, -30.011144),
+  y = c(-70.652134, -71.055452,-71.065528, -72.998085, -73.434013, -73.561719, -74.082951, -71.035427)
+)
+
+leaflet() %>%
+  addProviderTiles("Esri.WorldImagery") %>%
+  addMarkers(lng = locations$y[1:4],
+             lat = locations$x[1:4],
+             popup = locations$Profile[1:4],
+             icon = list(iconUrl = "https://upload.wikimedia.org/wikipedia/commons/e/ed/Map_pin_icon.svg", 
+                         iconSize = c(94/5, 128/5)))
+```
+
+## New Study sites
+
+```{r Reference_map_new, fig.cap= "New study sites", echo = FALSE, fig.width = 10.2}
+#map in leaflet
+
+library(leaflet)
+leaflet() %>%
+  addProviderTiles("Esri.WorldImagery") %>%
+  addMarkers(lng = locations$y[1:4],
+             lat = locations$x[1:4],
+             popup = locations$Profile[1:4],
+             icon = list(iconUrl = "https://upload.wikimedia.org/wikipedia/commons/e/ed/Map_pin_icon.svg", 
+                         iconSize = c(94/5, 128/5))) %>%
+  addMarkers(lng = locations$y[5:8],
+             lat = locations$x[5:8],
+             popup = locations$Profile[5:8],
+             icon = list(iconUrl = "https://upload.wikimedia.org/wikipedia/commons/f/fb/Map_pin_icon_green.svg", 
+                         iconSize = c(94/5, 128/5)))
+```
+
+## Quebrada de Talca{.smaller}
+<style>     #margins > p {margin-top: -150px;} </style>
+<div class="columns-2">
+  -   Soil:
+  -   Glaciar influence: NO
+  -   Volcanic influence: NO
+  -   Climate: Desert with marine influence and xeric humidity regime (BWnXe)
+  -   MAP: 66 mm 
+  -   MAP: 
+  -   ET~0~: 1382 mm
+  -   MAT:
+  -   Administration: Private (Comunidad Agrícola de Quebrada de Talca)
+  -   Distance from Santiago: ~400 km (6-7 hr driving time)
+![](Quebrada_de_Talca.jpg)</div>
+
+## Parque Nacional Alerce Costero{.smaller}
+<style>     #margins > p {margin-top: -150px;} </style>
+<div class="columns-2">
+
+  - Soil:
+  - Glaciar influence: NO
+  - Volcanic influence:  
+  - Climate: Warm temperate mesothermal with per-humid humidity regime (Cfb1pH)
+  - MAP: 1951 mm
+  - ET~0~: 122
+  - MAT:
+  - Administration: CONAF
+  - Distance from Santiago: ~930 km (10-11 hr driving time)
+
+![](parque_nacional_alerce_costero.jpg)</div>
+## Reserva Costera Valdiviana{.smaller}
+<style>     #margins > p {margin-top: -150px;} </style>
+<div class="columns-2">
+
+  - Soil:
+  - Glaciar influence: NO
+  - Volcanic influence:  
+  - Climate: Warm temperate mesothermal with per-humid humidity regime (Cfb1pH)
+  - MAP: 1951 mm
+  - ET~0~: 122
+  - MAT:
+  - Administration: private (The Nature Conservancy)
+  - Distance from Santiago: ~970 km (10-11 hr driving time)
+
+![](reserva_natural_selva_valdiviana.jpg)</div>
+## Parque Nacional Chiloé{.smaller}
+<style>     #margins > p {margin-top: -150px;} </style>
+<div class="columns-2">
+
+  - Soil:
+  - Glaciar influence: YES
+  - Volcanic influence: 
+  - Climate: Warm temperate mesothermal with per-humid humidity regime (Cfb1pH)
+  - MAP: 2181 mm
+  - ET~0~: 5 mm
+  - MAT: 
+  - Administration: CONAF
+  - Distance from Santiago: ~1250 km (14-15 hr driving time)
+![](Parque_Nacional_Chiloe.jpg)</div>
+
+## Program
+
+
+
+
